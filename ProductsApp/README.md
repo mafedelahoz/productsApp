@@ -73,7 +73,7 @@ The app includes a native calendar module that allows users to:
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone <https://github.com/mafedelahoz/productsApp>
 cd ProductsApp
 ```
 
@@ -158,15 +158,3 @@ All errors are displayed with user-friendly messages and retry options.
 - **Memoization**: React.memo and useCallback for component optimization
 - **FlatList**: Optimized list rendering for large product catalogs
 
-## Future Enhancements
-
-- Search functionality
-- User favorites/wishlist
-- Product comparison
-- Offline support with caching
-- Social sharing features
-- Advanced filtering options (price range, brand, etc.)
-
-## License
-
-This project is created for demonstration purposes.

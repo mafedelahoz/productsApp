@@ -60,16 +60,32 @@ class CalendarService {
         location: 'Products App',
       };
 
-      // Get default calendar
+      // Get writable calendars
       const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
-      const defaultCalendar = calendars.find(cal => cal.isPrimary) || calendars[0];
+      const writableCalendar = calendars.find(cal => 
+        cal.allowsModifications && 
+        (cal.isPrimary || cal.source.name === 'Default' || cal.source.name === 'Local')
+      );
 
-      if (!defaultCalendar) {
-        throw new Error('No calendar found');
+      if (!writableCalendar) {
+        const newCalendarId = await Calendar.createCalendarAsync({
+          title: 'Products App Reminders',
+          color: '#007AFF',
+          entityType: Calendar.EntityTypes.EVENT,
+          sourceId: calendars[0]?.source.id,
+          source: calendars[0]?.source,
+          name: 'Products App Reminders',
+          ownerAccount: 'local',
+          accessLevel: Calendar.CalendarAccessLevel.OWNER,
+        });
+        
+        const eventId = await Calendar.createEventAsync(newCalendarId, event);
+        await this.scheduleNotification(productTitle, reminderDate);
+        return eventId;
       }
 
-      // Create the event
-      const eventId = await Calendar.createEventAsync(defaultCalendar.id, event);
+      // Create the event in the writable calendar
+      const eventId = await Calendar.createEventAsync(writableCalendar.id, event);
 
       // Schedule notification
       await this.scheduleNotification(productTitle, reminderDate);
@@ -105,7 +121,6 @@ class CalendarService {
       });
     } catch (error) {
       console.error('Failed to schedule notification:', error);
-      // Don't throw here as the calendar event was already created
     }
   }
 

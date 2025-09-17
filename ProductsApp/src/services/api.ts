@@ -12,7 +12,6 @@ class ApiError extends Error {
   }
 }
 
-// Generic API request function with error handling
 async function apiRequest<T>(url: string): Promise<T> {
   try {
     const response = await fetch(url);
@@ -89,8 +88,9 @@ export class ProductsApiService {
 
   // Get all categories
   static async getCategories(): Promise<string[]> {
-    const response = await apiRequest<CategoriesResponse>(`${BASE_URL}/products/categories`);
-    return response;
+    const response = await apiRequest<any[]>(`${BASE_URL}/products/categories`);
+    // Extract the slug from each category object
+    return response.map(category => category.slug);
   }
 
   // Search products

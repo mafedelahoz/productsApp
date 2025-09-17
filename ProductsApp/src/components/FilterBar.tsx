@@ -112,7 +112,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#1C1C1E',
+    marginBottom: 4,
+  },
+  sectionSubtitle: {
+    fontSize: 12,
+    color: '#8E8E93',
     marginBottom: 8,
+    fontStyle: 'italic',
   },
   filterChip: {
     backgroundColor: '#fff',

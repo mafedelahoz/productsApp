@@ -11,7 +11,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
   const linking = {
-    prefixes: [Linking.createURL('/'), 'productsapp://'],
+    prefixes: [Linking.createURL('/'), 'productsapp://', 'exp://'],
     config: {
       screens: {
         ProductList: {

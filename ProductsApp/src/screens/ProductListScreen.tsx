@@ -15,7 +15,6 @@ import ProductCard from '../components/ProductCard';
 import FilterBar from '../components/FilterBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorView from '../components/ErrorView';
-import DeepLinkDemo from '../components/DeepLinkDemo';
 
 type ProductListScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -83,7 +82,7 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ navigation, route
       setCategories(categoriesData);
     } catch (err) {
       console.error('Error loading categories:', err);
-      // Don't show error for categories, just log it
+      setCategories(['smartphones', 'laptops', 'fragrances', 'skincare', 'groceries', 'home-decoration', 'furniture', 'tops', 'womens-dresses', 'womens-shoes', 'mens-shirts', 'mens-shoes', 'mens-watches', 'womens-watches', 'womens-bags', 'womens-jewellery', 'sunglasses', 'automotive', 'motorcycle', 'lighting']);
     }
   }, []);
 
@@ -168,7 +167,6 @@ const ProductListScreen: React.FC<ProductListScreenProps> = ({ navigation, route
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
           ListFooterComponent={renderFooter}
-          ListHeaderComponent={DeepLinkDemo}
           showsVerticalScrollIndicator={false}
         />
       )}
