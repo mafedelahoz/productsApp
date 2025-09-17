@@ -2,6 +2,10 @@
 
 A React Native mobile application that allows users to browse and explore a catalog of products using the DummyJSON API.
 
+
+https://github.com/user-attachments/assets/d5c946a9-0124-422f-a423-4907a3251143
+
+
 ## Features
 
 ### Core Features
